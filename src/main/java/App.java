@@ -9,14 +9,15 @@ public class App {
     public static void main(String[] args) {
 
         while (choice != 0) {
+            System.out.println("");
             System.out.println("Welcome to our " + clientManager.getName() + " application. Please choose your option:");
             System.out.println("");
             System.out.println("0. Quit");
             System.out.println("1. Print clients");
             System.out.println("2. Add new client");
-            System.out.println("3. Print installations");
-            System.out.println("4. Add new installation");
-            System.out.println("5. Find customer");
+            System.out.println("3. Print installations (not active yet)");
+            System.out.println("4. Add new installation (not active yet)");
+            System.out.println("5. Find customer (not active yet)");
             try {
                 choice = scan.nextInt();
             }
@@ -66,6 +67,11 @@ public class App {
         String lastName;
         String phoneNumber;
         String nip;
+        String city;
+        String street;
+        String houseNumber;
+        String postalCode;
+        String province;
         do {
             System.out.print("Enter the name of the new client: (min 3 chars) ");
             name = scan.nextLine();
@@ -84,9 +90,29 @@ public class App {
             System.out.print("Enter the NIP number of the new client: (exactly 10 digits) ");
             nip = scan.nextLine();
         } while (!Client.validateNIP(nip));
+        do {
+            System.out.print("Enter city: (min 3 chars) ");
+            city = scan.nextLine();
+        } while (!Address.validateCity(city));
+        do {
+            System.out.print("Enter street: (min 3 chars) ");
+            street = scan.nextLine();
+        } while (!Address.validateStreet(street));
+        do {
+            System.out.print("Enter house number: ");
+            houseNumber = scan.nextLine();
+        } while (!Address.validateHouseNumber(houseNumber));
+        do {
+            System.out.print("Enter postal code: (dd-ddd or leave empty) ");
+            postalCode = scan.nextLine();
+        } while (!Address.validatePostalCode(postalCode));
+        do {
+            System.out.print("Enter province: (not required) ");
+            province = scan.nextLine();
+        } while (!Address.validateProvince(province));
 
+        Address address = new Address.Builder(city, street, houseNumber).postalCode(postalCode).province(province).build();
         boolean isCompany = true;
-        Address address = new Address.Builder("3city", "Długa", "69").postalCode("80-555").province("Pomorskie").build();
         Client newClient = Client.createClient(name, lastName, address, phoneNumber, isCompany, nip);
         if(clientManager.addNewClient(newClient)) {
             System.out.println(newClient.getName() + " " + newClient.getLastName() + " added to client base.");

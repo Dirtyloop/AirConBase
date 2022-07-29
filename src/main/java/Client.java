@@ -75,5 +75,4 @@ public class Client {
         if(nip.isBlank() || !Pattern.matches("[0-9]{10}", nip)) return false;
         return true;
     }
-
 }

@@ -35,7 +35,7 @@ public class ClientManager {
         return true;
     }
 
-    private int findClient(String clientPhoneNumber){
+    public int findClient(String clientPhoneNumber){
         for(int i=0; i< clients.size(); i++){
             if (clients.get(i).getPhoneNumber().equals(clientPhoneNumber)){
                 return i;
