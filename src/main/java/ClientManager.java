@@ -8,13 +8,17 @@ public class ClientManager {
 
     public ClientManager(String name){
         this.name = name;
-        System.out.printf("%s base created.", name);
+        System.out.printf("%s base created.\n", name);
         this.clients = new ArrayList<>();
     }
 
     public void printClients() {
-        for(int i=0; i<clients.size(); i++) {
-            System.out.println(clients.get(i).toString());
+        if(clients.isEmpty()) {
+            System.out.println("Client database is empty.");
+        } else {
+            for (int i = 0; i < clients.size(); i++) {
+                System.out.println(clients.get(i).toString());
+            }
         }
     }
 
@@ -24,7 +28,7 @@ public class ClientManager {
 
     public boolean addNewClient(Client client) {
         if(findClient(client.getPhoneNumber()) >= 0) {
-            System.out.println("Client " + client.getName() + " " + client.getLastName() + " already exist!");
+            System.out.println("Client " + client.getName() + " " + client.getLastName() + " already exist in your database!");
             return false;
         }
         clients.add(client);

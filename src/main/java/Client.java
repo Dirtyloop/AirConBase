@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Client {
     private int id;
@@ -55,4 +56,24 @@ public class Client {
     public static int getClientCounter() {
         return clientCounter;
     }
+
+    public static boolean validateName(String name) {
+        if(name.isBlank() || name.length()<3) return false;
+        return true;
+    }
+
+    public static boolean validateLastName(String lastName) {
+        if(lastName.isBlank() || lastName.length()<3) return false;
+        return true;
+    }
+
+    public static boolean validatePhoneNumber(String phoneNumber) {
+        if(phoneNumber.isBlank() || !Pattern.matches("[0-9]{9}", phoneNumber)) return false;
+        return true;
+    }
+    public static boolean validateNIP(String nip) {
+        if(nip.isBlank() || !Pattern.matches("[0-9]{10}", nip)) return false;
+        return true;
+    }
+
 }
