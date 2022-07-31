@@ -54,6 +54,10 @@ public class Client {
         return phoneNumber;
     }
 
+    public static void setClientCounter(int clientCounter) {
+        Client.clientCounter = clientCounter;
+    }
+
     public static int getClientCounter() {
         return clientCounter;
     }

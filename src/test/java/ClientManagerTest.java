@@ -1,9 +1,16 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientManagerTest {
+
+    @BeforeEach
+    void beforeEach() {
+        Client.setClientCounter(0);
+    }
 
     @Test
     @DisplayName("Should create a new client")
