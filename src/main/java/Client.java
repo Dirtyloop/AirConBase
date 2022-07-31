@@ -11,6 +11,7 @@ public class Client {
     private boolean isCompany;
     private String nip;
     private static int clientCounter = 0;
+    public final InstallationManager installationManager= new InstallationManager();
 
     private Client(String name, String lastName, Address address, String phoneNumber, boolean isCompany, String nip) {
         this.name = name;

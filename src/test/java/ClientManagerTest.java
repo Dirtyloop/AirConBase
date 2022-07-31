@@ -38,7 +38,7 @@ class ClientManagerTest {
         clientManager.addNewClient(client2);
         clientManager.addNewClient(client3);
         String phoneNumber = "500501502";
-        assertEquals(1, clientManager.findClient(phoneNumber));
+        assertEquals(1, clientManager.findClientByPhoneNumber(phoneNumber));
     }
 
 

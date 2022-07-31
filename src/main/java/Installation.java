@@ -19,4 +19,11 @@ public class Installation {
         return new Installation(date, model, power, serialNumber);
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getModel() {
+        return model;
+    }
 }

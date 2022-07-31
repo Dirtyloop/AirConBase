@@ -27,7 +27,7 @@ public class ClientManager {
     }
 
     public boolean addNewClient(Client client) {
-        if(findClient(client.getPhoneNumber()) >= 0) {
+        if(findClientByPhoneNumber(client.getPhoneNumber()) >= 0) {
             System.out.println("Client " + client.getName() + " " + client.getLastName() + " already exist in your database!");
             return false;
         }
@@ -35,7 +35,7 @@ public class ClientManager {
         return true;
     }
 
-    public int findClient(String clientPhoneNumber){
+    public int findClientByPhoneNumber(String clientPhoneNumber){
         for(int i=0; i< clients.size(); i++){
             if (clients.get(i).getPhoneNumber().equals(clientPhoneNumber)){
                 return i;
@@ -48,5 +48,11 @@ public class ClientManager {
         return clients.stream().toList();
     }
 
-
+    public Client queryClientByPhoneNumber(String phoneNumber) {
+        int position = findClientByPhoneNumber(phoneNumber);
+        if(position >= 0) {
+            return this.clients.get(position);
+        }
+        return null;
+    }
 }

@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class App {
     public static ClientManager clientManager = new ClientManager("ContactBase");
+
     public static Scanner scan = new Scanner(System.in);
     static int choice = -1;
 
@@ -15,7 +16,7 @@ public class App {
             System.out.println("0. Quit");
             System.out.println("1. Print clients");
             System.out.println("2. Add new client");
-            System.out.println("3. Print installations (not active yet)");
+            System.out.println("3. Print installations");
             System.out.println("4. Add new installation (not active yet)");
             System.out.println("5. Find customer (not active yet)");
             try {
@@ -42,7 +43,7 @@ public class App {
                 }
                 case 3: {
                     System.out.println("Print installations");
-                    //printCustomers();
+                    printInstallations();
                     break;
                 }
                 case 4: {
@@ -119,5 +120,16 @@ public class App {
         } else {
             System.out.println("Cannot add " + newClient.getName() + " " + newClient.getLastName() + " to client base.");
         }
+    }
+
+    private static void printInstallations(){
+        System.out.println("Enter phone number of client to print installations from: ");
+        String phoneNumber = scan.nextLine();
+        Client clientToPrint = clientManager.queryClientByPhoneNumber(phoneNumber);
+        if(clientToPrint == null) {
+            System.out.println("Client not found.");
+            return;
+        }
+        clientToPrint.installationManager.printInstallations();
     }
 }
