@@ -16,4 +16,10 @@ public class InstallationManager {
         }
     }
 
+    public boolean addNewInstallation(Installation installation) {
+
+        installations.add(installation);
+        return true;
+    }
+
 }

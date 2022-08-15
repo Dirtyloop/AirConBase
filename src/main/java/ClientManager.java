@@ -9,7 +9,7 @@ public class ClientManager {
     public ClientManager(String name){
         this.name = name;
         System.out.printf("%s base created.\n", name);
-        this.clients = new ArrayList<>();
+        clients = new ArrayList<>();
     }
 
     public void printClients() {
@@ -20,6 +20,10 @@ public class ClientManager {
                 System.out.println(clients.get(i).toString());
             }
         }
+    }
+
+    public void printClientInfo(int clientNumberToPrint) {
+        System.out.println(clients.get(clientNumberToPrint).toString());
     }
 
     public String getName() {

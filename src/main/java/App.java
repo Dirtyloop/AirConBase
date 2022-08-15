@@ -1,8 +1,11 @@
+import java.io.Serial;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
     public static ClientManager clientManager = new ClientManager("ContactBase");
+    public static InstallationManager installationManager = new InstallationManager();
 
     public static Scanner scan = new Scanner(System.in);
     static int choice = -1;
@@ -17,8 +20,8 @@ public class App {
             System.out.println("1. Print clients");
             System.out.println("2. Add new client");
             System.out.println("3. Print installations");
-            System.out.println("4. Add new installation (not active yet)");
-            System.out.println("5. Find customer (not active yet)");
+            System.out.println("4. Add new installation");
+            System.out.println("5. Print client info");
             try {
                 choice = scan.nextInt();
             }
@@ -48,12 +51,12 @@ public class App {
                 }
                 case 4: {
                     System.out.println("Add new installation");
-                    //addNewCustomer();
+                    addNewInstallation();
                     break;
                 }
                 case 5: {
-                    System.out.println("Find customer");
-                    //checkContact();
+                    System.out.println("Print client info");
+                    printClient();
                     break;
                 }
                 default: {
@@ -132,4 +135,62 @@ public class App {
         }
         clientToPrint.installationManager.printInstallations();
     }
+
+    private static void printClient(){
+        System.out.println("Enter phone number of client to print: ");
+        String phoneNumber = scan.nextLine();
+        int clientNumberToPrint = clientManager.findClientByPhoneNumber(phoneNumber);
+        if(clientNumberToPrint == -1) {
+            System.out.println("Client not found.");
+        } else {
+            clientManager.printClientInfo(clientNumberToPrint);
+        }
+    }
+
+    private static void addNewInstallation() {
+        String date;
+        LocalDate localDate;
+        String model;
+        double power;
+        long serialNumber;
+        String serial;
+
+        System.out.println("Enter phone number of client to add installation: ");
+        String phoneNumber = scan.nextLine();
+        Client clientToAddInstallation = clientManager.queryClientByPhoneNumber(phoneNumber);
+        if(clientToAddInstallation == null) {
+            System.out.println("Client not found.");
+            return;
+        }
+
+        do {
+            System.out.print("Enter the date of the new installation: (yyyy-mm-dd) ");
+            date = scan.nextLine();
+        } while (!Installation.validateDate(date));
+        localDate = LocalDate.parse(date);
+        do {
+            System.out.print("Enter the model of the new installation: (min 3 chars) ");
+            model = scan.nextLine();
+
+        } while (!Installation.validateModel(model));
+        do {
+            System.out.print("Enter the power of the new installation: ");
+            power = scan.nextDouble();
+            scan.nextLine();
+        } while (!Installation.validatePower(power));
+        do {
+            System.out.print("Enter the serial number of the new installation: (exactly 8 digits) ");
+            serial = scan.nextLine();
+        } while (!Installation.validateSerialNumber(serial));
+        serialNumber = Long.valueOf(serial);
+
+        Installation newInstallation = Installation.createInstallation(localDate, model, power, serialNumber);
+
+        if(clientToAddInstallation.installationManager.addNewInstallation(newInstallation)) {
+            System.out.println(newInstallation.getModel() + " installed on " + newInstallation.getDate() + " added to installation base.");
+        } else {
+            System.out.println("Cannot add " + newInstallation.getModel() + " installed on " + newInstallation.getDate() + " to installation base.");
+        }
+    }
+
 }
