@@ -1,4 +1,3 @@
-import java.io.Serial;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +12,7 @@ public class App {
     public static void main(String[] args) {
 
         while (choice != 0) {
+            clearConsole();
             System.out.println("");
             System.out.println("Welcome to our " + clientManager.getName() + " application. Please choose your option:");
             System.out.println("");
@@ -192,5 +192,22 @@ public class App {
             System.out.println("Cannot add " + newInstallation.getModel() + " installed on " + newInstallation.getDate() + " to installation base.");
         }
     }
+    public static void clearConsole(){
+        try{
+            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+            ProcessBuilder processBuilder;
 
+            if(operatingSystem.contains("Windows")){
+                processBuilder = new ProcessBuilder("cmd", "/c", "cls");
+            } else {
+                processBuilder = new ProcessBuilder("clear");
+            }
+            processBuilder.inheritIO();
+            Process process = processBuilder.start();
+            process.waitFor();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 }
