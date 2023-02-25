@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,10 @@ class InstallationTest {
     }
 
     @Test
-    void validateModel() {
+    @DisplayName("Should return false if model is less than 3 characters")
+    void shouldReturnFalseIfModelIsLessThan3Characters() {
+        String model = "3D";
+        assertFalse(Installation.validateModel(model));
     }
 
     @Test
