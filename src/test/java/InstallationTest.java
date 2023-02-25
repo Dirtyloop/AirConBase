@@ -17,6 +17,13 @@ class InstallationTest {
     }
 
     @Test
+    @DisplayName("Should return false if model consist of 3 spaces")
+    void shouldReturnFalseIfModelConsistOf3Spaces() {
+        String model = "   ";
+        assertFalse(Installation.validateModel(model));
+    }
+
+    @Test
     void validatePower() {
     }
 
