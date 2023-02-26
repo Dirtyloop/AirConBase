@@ -36,6 +36,12 @@ class InstallationTest {
         assertFalse(Installation.validatePower(power));
     }
 
+    @Test@DisplayName("Should return false if power is over 8.0")
+    void shouldReturnFalseIfPowerIsOver8() {
+        double power = 8.1;
+        assertFalse(Installation.validatePower(power));
+    }
+
     @Test
     void validateSerialNumber() {
     }
