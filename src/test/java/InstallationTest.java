@@ -26,8 +26,14 @@ class InstallationTest {
     @Test
     @DisplayName("Should return true if power is beetwen 2.0 and 8.0")
     void shouldReturnTrueIfPowerIsBeetwen2And8() {
-        double power = 2.1;
+        double power = 2.0;
         assertTrue(Installation.validatePower(power));
+    }
+
+    @Test@DisplayName("Should return false if power is less than 2.0")
+    void shouldReturnFalseIfPowerIsLessThan2() {
+        double power = 1.99;
+        assertFalse(Installation.validatePower(power));
     }
 
     @Test
