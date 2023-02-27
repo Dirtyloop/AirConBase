@@ -30,19 +30,22 @@ class InstallationTest {
         assertTrue(Installation.validatePower(power));
     }
 
-    @Test@DisplayName("Should return false if power is less than 2.0")
+    @Test@DisplayName("Should return false if power is 1.99 (less than 2.0)")
     void shouldReturnFalseIfPowerIsLessThan2() {
         double power = 1.99;
         assertFalse(Installation.validatePower(power));
     }
 
-    @Test@DisplayName("Should return false if power is over 8.0")
+    @Test@DisplayName("Should return false if power is 8.1 (over 8.0)")
     void shouldReturnFalseIfPowerIsOver8() {
         double power = 8.1;
         assertFalse(Installation.validatePower(power));
     }
 
     @Test
-    void validateSerialNumber() {
+    @DisplayName("Should return false if serial number consist of 7 digits")
+    void shouldReturnFalseIfSerianNumberConsistOf7Digits() {
+        String serialNumber = "7654321";
+        assertFalse(Installation.validateSerialNumber(serialNumber));
     }
 }
