@@ -48,4 +48,11 @@ class InstallationTest {
         String serialNumber = "7654321";
         assertFalse(Installation.validateSerialNumber(serialNumber));
     }
+
+    @Test
+    @DisplayName("Should return false if serial number consist of digits and characters")
+    void shouldReturnFalseIfSerialNumberCOnsistOfDigitsAndCharacters() {
+        String serialNumber = "SN1234";
+        assertFalse(Installation.validateSerialNumber(serialNumber));
+    }
 }
