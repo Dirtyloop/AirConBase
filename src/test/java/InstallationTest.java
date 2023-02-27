@@ -62,4 +62,11 @@ class InstallationTest {
         String serialNumber = "987654321";
         assertFalse(Installation.validateSerialNumber(serialNumber));
     }
+
+    @Test
+    @DisplayName("Sould return true if serial number consist of 8 digits")
+    void shouldReturnTrueIfSerialNumberConsistOf9Digits() {
+        String serialNumber = "12345678";
+        assertTrue(Installation.validateSerialNumber(serialNumber));
+    }
 }
