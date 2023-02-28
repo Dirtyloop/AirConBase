@@ -20,6 +20,13 @@ class InstallationTest {
     }
 
     @Test
+    @DisplayName("Should return true if date is 2023-02-28")
+    void shouldReturnTrueIfDateIsValid() {
+        String date = "2023-02-28";
+        assertTrue(Installation.validateDate(date));
+    }
+
+    @Test
     @DisplayName("Should return false if model is less than 3 characters")
     void shouldReturnFalseIfModelIsLessThan3Characters() {
         String model = "3D";
