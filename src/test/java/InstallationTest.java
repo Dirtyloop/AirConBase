@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class InstallationTest {
 
     @Test
-    void validateDate() {
+    @DisplayName("Should return false if date is in wrong format (23.02.28)")
+    void shouldReturnFalseIfDateIsInWrongFormat() {
+        String date = "23.02.28";
+        assertFalse(Installation.validateDate(date));
     }
 
     @Test
