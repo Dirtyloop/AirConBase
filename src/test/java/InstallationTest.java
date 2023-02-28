@@ -13,6 +13,13 @@ class InstallationTest {
     }
 
     @Test
+    @DisplayName("Should return false if date is before 2000")
+    void shouldReturnFalseIfDateIsBefore2000() {
+        String date = "1999-02-28";
+        assertFalse(Installation.validateDate(date));
+    }
+
+    @Test
     @DisplayName("Should return false if model is less than 3 characters")
     void shouldReturnFalseIfModelIsLessThan3Characters() {
         String model = "3D";
